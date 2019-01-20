@@ -34,27 +34,28 @@ def Getcontent():
 		j=j.replace("\n",'')
 		j=j.replace(" ",'')
 		dic[i]=j
-	'''
-	for key,value in dic.items():
-		print(key,value)
-	'''
 	return dic
 
 def writefile(filename,content):
 	with open(filename,'w') as filewrite:
 		filewrite.write(content)
 
-new = str(Getcontent())
-filename = '/home/ubuntu/dic.txt' #路径自己改
-with open(filename,'r') as fileread:
-	if (new == str(fileread.read())):
-		print("it doesn't need renew")
-	else:
-		writefile(filename,new)
-		mailsend.mail(new)
+new = Getcontent()
+#print(new)
+print(new.items)
 
-'''
-with open(filename,'w') as file_write:
-	file_write.write(str(Getcontent()))
-'''
+filename = '/home/ubuntu/queryscore/dic.txt' #路径自己改
+with open(filename,'r') as fileread:
+	TXTcontent = fileread.read()
+	flag = 0
+	for key,value in new.items():
+		temp = "'"+str(key) +"'"+ ': ' +"'" + str(value) +"'"
+		print(temp)
+		if ( temp in TXTcontent):
+			print("it doesn't need renew")
+		else:
+			flag =1 
+	if (flag==1):
+		writefile(str(new))
+		mailsend.mail(new)
 
