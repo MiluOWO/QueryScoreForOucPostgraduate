@@ -57,5 +57,5 @@ with open(filename,'r') as fileread:
 			flag =1 
 	if (flag==1):
 		writefile(str(new))
-		mailsend.mail(new)
+		mailsend.mail(str(new))
 
